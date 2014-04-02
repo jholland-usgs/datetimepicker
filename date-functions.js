@@ -299,19 +299,14 @@ Date.prototype.getGMTOffset = function () {
     return (this.getTimezoneOffset() > 0 ? "-" : "+") + String.leftPad(Math.floor(Math.abs(this.getTimezoneOffset()) / 60), 2, "0") + String.leftPad(Math.abs(this.getTimezoneOffset()) % 60, 2, "0")
 };
 Date.prototype.getDayOfYear = function () {
-    var num = 0;
-    Date.daysInMonth[1] = this.isLeapYear() ? 29 : 28;
-    for (var i = 0; i < this.getMonth(); ++i) {
-        num += Date.daysInMonth[i]
-    }
-    return num + this.getDate() - 1
+    var jan1 = new Date(this.getFullYear(), 0, 1);
+    return Math.ceil((this - jan1)/86400000); 
 };
 Date.prototype.getWeekOfYear = function () {
-    var now = this.getDayOfYear() + (4 - this.getDay());
     var jan1 = new Date(this.getFullYear(), 0, 1);
-    var then = (7 - jan1.getDay() + 4);
-    document.write(then);
-    return String.leftPad(((now - then) / 7) + 1, 2, "0")
+    //Number of days
+
+    return 0//String.leftPad(((now - then) / 7) + 1, 2, "0")
 };
 Date.prototype.isLeapYear = function () {
     var year = this.getFullYear();
