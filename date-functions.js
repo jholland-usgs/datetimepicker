@@ -304,9 +304,7 @@ Date.prototype.getDayOfYear = function () {
 };
 Date.prototype.getWeekOfYear = function () {
     var jan1 = new Date(this.getFullYear(), 0, 1);
-    //Number of days
-
-    return 0//String.leftPad(((now - then) / 7) + 1, 2, "0")
+    return Math.ceil((Math.ceil((this - jan1)/86400000)+jan1.getDay())/7); 
 };
 Date.prototype.isLeapYear = function () {
     var year = this.getFullYear();
